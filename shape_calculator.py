@@ -2,6 +2,9 @@ class Rectangle:
   def __init__(self, width, height):
     self.width = width
     self.height = height
+  def __str__(self):
+    return "Rectangle(width="+str(self.width)+", height="+str(self.height)+")"
+
   def set_width(self, width):
     self.width = width
   def set_height(self, height):
@@ -14,10 +17,19 @@ class Rectangle:
     return ((self.width ** 2 + self.height ** 2) ** .5)
   def get_picture(self):
     if (self.width > 50 or self.height > 50):
-      return "Too big for picture"
+      return "Too big for picture."
     else:
       for y in range(0, self.height):
         print('*' * self.width)
+  def get_amount_inside(self, shape):
+    return math.floor(self.get_area(self)/shape.get_area(shape))
 
-class Square:
-
+class Square(Rectangle):
+  def __init__(self, side):
+    self.width = side
+    self.height = side
+    self.side = side
+  def __str__(self):
+    return "Square(side="+str(self.side)+")"
+  def set_side(self, side):
+    self.side = side
