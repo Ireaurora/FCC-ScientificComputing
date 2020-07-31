@@ -1,6 +1,6 @@
 class Category:
   def __init__(self, category):
-    self._ = category
+    self.category = category
     self.ledger = []
     self.balance = 0
 
@@ -9,21 +9,18 @@ class Category:
       return False
     return True
 
-  def deposit(self, amount, description):
-    if description == None:
-      description = ""
+  def deposit(self, amount, description=""):
     self.balance += amount
     self.ledger.append(dict([("amount",amount), ("description", description)]))
 
-  def withdraw(self, amount, description):
+  def withdraw(self, amount, description=""):
     negAmount = -amount
     if self.check_funds(amount):
-      self.ledger.append(negAmount)
+      self.ledger.append(dict([("amount",negAmount), ("description", description)]))
       self.balance -= amount
       return True
     else:
       return False
-      
 
   def get_balance(self):
     return self.balance
